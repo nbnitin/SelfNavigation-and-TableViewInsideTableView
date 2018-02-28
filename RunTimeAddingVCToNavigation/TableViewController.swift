@@ -12,6 +12,7 @@ class TableViewController: UITableViewController {
     
     var data : [String] = []
     var count = 0
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

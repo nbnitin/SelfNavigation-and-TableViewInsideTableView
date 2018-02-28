@@ -112,7 +112,7 @@
             </objects>
             <point key="canvasLocation" x="1558" y="226"/>
         </scene>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="bUh-77-bQa">
             <objects>
                 <viewController id="MCb-OL-jN7" customClass="ViewController" customModule="RunTimeAddingVCToNavigation" customModuleProvider="target" sceneMemberID="viewController">
@@ -121,7 +121,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a4e-df-Inj">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="252" id="tpK-PA-Bxh" customClass="CustomTableViewCell" customModule="RunTimeAddingVCToNavigation" customModuleProvider="target">
@@ -221,6 +221,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rkg-7m-DjN"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="SKe-lT-xuC">
+                        <barButtonItem key="rightBarButtonItem" title="Inner Item" id="1Ty-Lq-v1f">
+                            <connections>
+                                <action selector="btnChangeCount:" destination="MCb-OL-jN7" id="Cl8-Ca-Qgv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tbView" destination="a4e-df-Inj" id="Mml-0j-ISD"/>
                     </connections>

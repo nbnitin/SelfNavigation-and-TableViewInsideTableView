@@ -12,6 +12,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     @IBOutlet weak var tbView: UITableView!
     var data : [String] = []
+    var totalInnerItems = 4
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,8 +42,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         if ( indexPath.row == 0 ) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
             cell.lblTitle.text = data[indexPath.row]
-            
-            for i in 0...6{
+            cell.data.removeAll()
+            for i in 0...totalInnerItems{
                 cell.data.append("child cell \(i)")
             }
             
@@ -57,10 +59,30 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.row == 0){
-            return 140 + (44*5)
+            
+            if ( totalInnerItems < 6 ) {
+                //140 is height of each outer + 44 is height of each cell in inner table view
+                return CGFloat(140 + (44*totalInnerItems))
+            }
+             return CGFloat(140 + (44*5))
             
         }
         return 140
     }
     
+    @IBAction func btnChangeCount(_ sender: Any) {
+        let ac = UIAlertController(title: "Enter New Count", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+        ac.textFields![0].text = "\(totalInnerItems)"
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [unowned ac] _ in
+            self.totalInnerItems = Int(ac.textFields![0].text!)!
+            let indexPath : IndexPath = IndexPath(row: 0, section: 0)
+            self.tbView.reloadRows(at: [indexPath], with: .automatic)
+        }
+        
+        ac.addAction(submitAction)
+        
+        present(ac, animated: true)
+    }
 }
