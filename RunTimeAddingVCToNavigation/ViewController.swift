@@ -39,9 +39,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
+        cell.lblTitle.text = data[indexPath.row]
+        
         if ( indexPath.row == 0 ) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-            cell.lblTitle.text = data[indexPath.row]
+            
             cell.data.removeAll()
             for i in 0...totalInnerItems{
                 cell.data.append("child cell \(i)")
@@ -51,9 +53,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             cell.cellTb.dataSource = cell
             cell.cellTb.reloadData()
             return cell
+        } else {
+            cell.data = []
+            cell.cellTb.delegate = nil
+            cell.cellTb.dataSource = nil
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-        cell.lblTitle.text = data[indexPath.row]
+       
         return cell
     }
     
